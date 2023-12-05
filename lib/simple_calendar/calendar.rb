@@ -12,7 +12,7 @@ module SimpleCalendar
       @options = options
 
       # Next and previous view links should use the same params as the current view
-      @params = @view_context.respond_to?(:params) ? @view_context.params : {}
+      @params = @view_context.respond_to?(:params) && @view_context.params.present? ? @view_context.params : {}
       @params = @params.to_unsafe_h if @params.respond_to?(:to_unsafe_h)
       @params = @params.with_indifferent_access.except(*PARAM_KEY_BLACKLIST)
 
